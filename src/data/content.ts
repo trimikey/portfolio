@@ -6,6 +6,13 @@ export const profile = {
   nameVi: 'Lê Đức Trí',
   initials: 'LDT',
   email: 'leductri12321@gmail.com',
+  /**
+   * Contact form backend (FormSubmit, free, no account). The first submission
+   * sends an activation email to the address above - click "Activate" once.
+   * After activation FormSubmit also offers a random alias you can paste here
+   * instead of the raw address, e.g. https://formsubmit.co/ajax/abc123def456
+   */
+  formEndpoint: 'https://formsubmit.co/ajax/leductri12321@gmail.com',
   phoneDisplay: '0345 142 309',
   phoneIntlDisplay: '+84 345 142 309',
   phoneHref: 'tel:+84345142309',
@@ -138,7 +145,10 @@ export type Content = {
       subjectPlaceholder: string
       messagePlaceholder: string
       submit: string
+      sending: string
       hint: string
+      success: string
+      error: string
       defaultSubject: string
     }
   }
@@ -395,7 +405,10 @@ const en: Content = {
       subjectPlaceholder: 'Fullstack Developer position at ...',
       messagePlaceholder: 'Tell me about the role, the team, and the timeline...',
       submit: 'Send message',
-      hint: 'Opens your email client with the message pre-filled.',
+      sending: 'Sending...',
+      hint: 'Your message goes straight to my inbox.',
+      success: 'Thanks! Your message has been sent. I will reply within 24 hours.',
+      error: 'Something went wrong. Please email me directly at',
       defaultSubject: 'Contact from portfolio',
     },
   },
@@ -653,7 +666,10 @@ const vi: Content = {
       subjectPlaceholder: 'Vị trí Fullstack Developer tại ...',
       messagePlaceholder: 'Chia sẻ về vị trí, đội ngũ và thời gian dự kiến...',
       submit: 'Gửi tin nhắn',
-      hint: 'Mở ứng dụng email của bạn với nội dung được điền sẵn.',
+      sending: 'Đang gửi...',
+      hint: 'Tin nhắn được gửi thẳng đến hộp thư của tôi.',
+      success: 'Cảm ơn bạn! Tin nhắn đã được gửi. Tôi sẽ phản hồi trong vòng 24 giờ.',
+      error: 'Có lỗi xảy ra. Bạn có thể gửi email trực tiếp tới',
       defaultSubject: 'Liên hệ từ portfolio',
     },
   },

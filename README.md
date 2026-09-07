@@ -35,6 +35,14 @@ Everything shown on the page lives in `src/data/content.ts`:
 
 To change colors, edit the `:root` (dark) and `:root[data-theme="light"]` (light) palettes at the top of `src/index.css`. The theme choice is stored in `localStorage` under `theme`; dark is the default.
 
+## Contact form
+
+The form posts to [FormSubmit](https://formsubmit.co) (free, no account) and the message lands in the inbox configured in `profile.formEndpoint` in `src/data/content.ts`.
+
+- The very first submission triggers an **activation email** to that inbox. Click "Activate" once; until then messages are held.
+- After activation, FormSubmit emails you a random alias (for example `https://formsubmit.co/ajax/abc123def456`). Paste it into `profile.formEndpoint` if you prefer not to expose the raw address in the page source.
+- Spam protection: a hidden honeypot field plus FormSubmit's own filtering. Replies go to the sender's address via `_replyto`.
+
 ## Deploying
 
 The build output in `dist/` is a static site. It can be hosted on Vercel, Netlify, GitHub Pages or any static host.
