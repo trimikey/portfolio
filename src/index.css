@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Palette. Dark is the default; <html data-theme="light"> switches to light.
+   Tailwind utilities read these through the @theme inline block below, so the
+   whole page recolors at runtime without a rebuild.
+--------------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+
+  --p-bg: #050505;
+  --p-surface: #0c0c0e;
+  --p-surface-2: #131316;
+  --p-border: #222226;
+  --p-border-strong: #3a3a40;
+  --p-text: #f4f4f5;
+  --p-muted: #a1a1aa;
+  --p-accent: #818cf8;
+  --p-accent-2: #c084fc;
+  --p-success: #34d399;
+
+  --grid-line: rgba(255, 255, 255, 0.045);
+  --placeholder: #6b6b74;
+  --btn-primary-hover: #e4e4e7;
+  --btn-primary-glow: rgba(244, 244, 245, 0.45);
+  --shadow-strong: rgba(0, 0, 0, 0.6);
+  --card-shadow: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --p-bg: #f8f8fa;
+  --p-surface: #ffffff;
+  --p-surface-2: #f1f1f4;
+  --p-border: #e4e4e8;
+  --p-border-strong: #c6c6cd;
+  --p-text: #121214;
+  --p-muted: #5d5d68;
+  --p-accent: #4f46e5;
+  --p-accent-2: #9333ea;
+  --p-success: #059669;
+
+  --grid-line: rgba(0, 0, 0, 0.06);
+  --placeholder: #9a9aa3;
+  --btn-primary-hover: #2a2a2e;
+  --btn-primary-glow: rgba(18, 18, 20, 0.25);
+  --shadow-strong: rgba(0, 0, 0, 0.16);
+  --card-shadow: rgba(0, 0, 0, 0.14);
+}
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-bg: var(--p-bg);
+  --color-surface: var(--p-surface);
+  --color-surface-2: var(--p-surface-2);
+  --color-border: var(--p-border);
+  --color-border-strong: var(--p-border-strong);
+  --color-text: var(--p-text);
+  --color-muted: var(--p-muted);
+  --color-accent: var(--p-accent);
+  --color-accent-2: var(--p-accent-2);
+  --color-success: var(--p-success);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--p-bg);
+  color: var(--p-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Grid/flex children default to min-width:auto, which lets long code lines
+   stretch a column past the viewport on small screens. */
+.grid > *,
+.flex > * {
+  min-width: 0;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--p-accent) 45%, transparent);
+  color: var(--p-text);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.625rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  white-space: nowrap;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-primary {
+  background: var(--p-text);
+  color: var(--p-bg);
+}
+.btn-primary:hover {
+  background: var(--btn-primary-hover);
+  box-shadow: 0 8px 24px -12px var(--btn-primary-glow);
+}
+.btn-secondary {
+  border: 1px solid var(--p-border);
+  background: var(--p-surface);
+  color: var(--p-text);
+}
+.btn-secondary:hover {
+  border-color: var(--p-border-strong);
+  background: var(--p-surface-2);
+}
+
+/* Cards */
+.card {
+  border-radius: 1rem;
+  border: 1px solid var(--p-border);
+  background: var(--p-surface);
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+.card-hover {
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s, background-color 0.35s ease;
+}
+.card-hover:hover {
+  border-color: var(--p-border-strong);
+  transform: translateY(-3px);
+  box-shadow:
+    0 24px 48px -24px var(--card-shadow),
+    0 0 0 1px color-mix(in oklab, var(--p-accent) 12%, transparent);
+}
+
+/* Heavy drop shadow for floating chips and the back-to-top button */
+.float-shadow {
+  box-shadow: 0 25px 50px -12px var(--shadow-strong);
+}
+
+/* Form fields */
+.field {
+  width: 100%;
+  border-radius: 0.625rem;
+  border: 1px solid var(--p-border);
+  background: var(--p-surface-2);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.875rem;
+  color: var(--p-text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.35s ease;
+}
+.field::placeholder {
+  color: var(--placeholder);
+}
+.field:focus {
+  border-color: var(--p-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--p-accent) 25%, transparent);
+}
+
+/* Motion: gradient shimmer on the hero role */
+.text-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 7s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Motion: infinite marquee (track holds two copies of the list) */
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .text-shimmer,
+  .marquee-track {
+    animation: none;
+  }
+  .btn,
+  .card-hover {
+    transition: none;
+  }
+}
