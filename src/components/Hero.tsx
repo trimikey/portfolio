@@ -106,26 +106,26 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.25, ease: EASE }}
             className="relative"
           >
-            <div className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-linear-to-br from-accent/30 via-transparent to-accent-2/30 blur-2xl" />
+            <div className="pointer-events-none absolute -inset-6 rounded-full bg-linear-to-br from-accent/30 via-transparent to-accent-2/30 blur-2xl" />
 
-            <motion.div {...float(8, 6)} className="card relative overflow-hidden rounded-[2rem] p-2">
-              <div className="relative overflow-hidden rounded-[1.5rem]">
+            <motion.div {...float(8, 6)} className="card relative overflow-hidden rounded-full p-2">
+              <div className="relative overflow-hidden rounded-full">
                 <img
                   src={profile.avatar}
                   alt={displayName}
-                  width={473}
-                  height={591}
-                  className="aspect-[4/5] w-full object-cover"
+                  width={800}
+                  height={800}
+                  className="aspect-square w-full object-cover"
                   loading="eager"
                   decoding="async"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-bg/55 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/10" />
               </div>
             </motion.div>
 
             <motion.div
               {...float(6, 5, 0.6)}
-              className="card absolute -bottom-5 -left-4 flex items-center gap-2 px-4 py-3 text-sm float-shadow sm:-left-8"
+              className="card absolute bottom-2 -left-2 flex items-center gap-2 px-4 py-3 text-sm float-shadow sm:bottom-4 sm:-left-6"
             >
               <MapPin size={14} className="text-accent" />
               <span>{t.hero.location}</span>
@@ -133,7 +133,7 @@ export function Hero() {
 
             <motion.div
               {...float(7, 7, 1.2)}
-              className="card absolute -top-5 -right-4 px-4 py-3 font-mono text-xs float-shadow sm:-right-8"
+              className="card absolute top-2 -right-2 px-4 py-3 font-mono text-xs float-shadow sm:top-4 sm:-right-6"
             >
               <span className="text-accent-2">const</span> <span className="text-text">stack</span>{' '}
               <span className="text-muted">=</span> [<span className="text-success">'NestJS'</span>,{' '}
